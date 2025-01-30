@@ -3,7 +3,7 @@ import React from "react";
 import CardSummaryComponent from "./component/CardSummaryComponent";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-import { overviewData } from "@/constants";
+import { overviewData, recentSalesData } from "@/constants";
 import { useTheme } from "@/hooks/use-theme";
 
 const DashboardPage = () => {
@@ -52,6 +52,7 @@ const DashboardPage = () => {
                 />
             </div>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7">
+                {/* Overview Section */}
                 <div className="card col-span-1 md:col-span-2 lg:col-span-4">
                     <div className="card-header">
                         <p className="card-title">Overview</p>
@@ -120,7 +121,35 @@ const DashboardPage = () => {
                         </ResponsiveContainer>
                     </div>
                 </div>
-                <div className="card col-span-1 md:col-span-2 lg:col-span-3"></div>
+
+                {/* Recent Data Section */}
+                <div className="card col-span-1 md:col-span-2 lg:col-span-3">
+                    <div className="card-header">
+                        <p className="card-title">Recent Sales</p>
+                    </div>
+                    <div className="card-body h-[300px] overflow-auto p-0">
+                        {recentSalesData.map((sales) => (
+                            <div
+                                key={sales.id}
+                                className="flex items-center justify-between gap-x-4 py-2 pr-4"
+                            >
+                                <div className="flex items-center gap-x-4">
+                                    <img
+                                        src={sales.image}
+                                        alt={sales.name}
+                                        className="size-10 flex-shrink-0 rounded-full object-cover"
+                                    />
+                                    <div className="flex flex-col gap-y-2">
+                                        <p className="font-medium text-slate-900 dark:text-slate-50">{sales.name}</p>
+                                        <p className="text-sm text-slate-600 dark:text-slate-400">{sales.email}</p>
+                                    </div>
+                                </div>
+
+                                <p className="font-medium text-slate-900 dark:text-slate-50">${sales.total}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );
