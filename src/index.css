@@ -50,6 +50,26 @@
     .card-body {
         @apply flex flex-col gap-y-2 rounded-lg p-4;
     }
+
+    .table {
+        @apply h-full w-full text-slate-900 dark:text-slate-50;
+    }
+
+    .table-header {
+        @apply sticky top-0 bg-slate-200 transition-[background] dark:bg-slate-800;
+    }
+
+    .table-row {
+        @apply border-b border-slate-300 transition-colors last:border-none dark:border-slate-700;
+    }
+
+    .table-head {
+        @apply h-12 px-4 text-start;
+    }
+
+    .table-cell {
+        @apply w-fit whitespace-nowrap p-4 font-medium;
+    }
 }
 
 .recharts-default-tooltip {
@@ -57,9 +77,9 @@
 }
 
 .recharts-tooltip-label {
-    @apply text-base font-medium text-slate-900 dark:text-slate-50
+    @apply text-base font-medium text-slate-900 dark:text-slate-50;
 }
 
 .recharts-tooltip-item {
-    @apply text-base font-medium !text-blue-500 dark:!text-blue-600
+    @apply text-base font-medium !text-blue-500 dark:!text-blue-600;
 }
