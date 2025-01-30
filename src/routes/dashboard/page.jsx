@@ -5,6 +5,7 @@ import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "rec
 
 import { overviewData, recentSalesData, topProducts } from "@/constants";
 import { useTheme } from "@/hooks/use-theme";
+import Footer from "../../layouts/footer";
 
 const DashboardPage = () => {
     const { theme } = useTheme();
@@ -217,6 +218,7 @@ const DashboardPage = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };
