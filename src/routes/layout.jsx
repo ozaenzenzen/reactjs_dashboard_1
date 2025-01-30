@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Sidebar from "../layouts/sidebar";
 
 import { useMediaQuery } from "@uidotdev/usehooks";
-// import { useClickOutside } from "@/hooks/use-click-outside";
+import { useClickOutside } from "../hooks/use-click-outside";
 
 import { cn } from "../utils/cn";
 import Header from "../layouts/header";
@@ -19,15 +19,11 @@ const Layout = () => {
         setCollapsed(!isDesktopDevice);
     }, [isDesktopDevice]);
 
-    // useEffect(() => {
-    //     setCollapsed(!isDesktopDevice);
-    // }, [isDesktopDevice]);
-
-    // useClickOutside([sidebarRef], () => {
-    //     if (!isDesktopDevice && !collapsed) {
-    //         setCollapsed(true);
-    //     }
-    // });
+    useClickOutside([sidebarRef], () => {
+        if (!isDesktopDevice && !collapsed) {
+            setCollapsed(true);
+        }
+    });
 
     return (
         <div className="min-h-screen bg-slate-100 transition-colors dark:bg-slate-950">
