@@ -1,16 +1,16 @@
 import { forwardRef } from "react";
-import { cn } from "../utils/cn";
-
-import { navbarLinks } from "../constants";
-
-import React from "react";
-import logoLight from "../assets/logo-light.svg";
-import logoDark from "../assets/logo-dark.svg";
-
-import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
-const Sidebar = forwardRef(({ collapsed }, ref) => {
+import { navbarLinks } from "@/constants";
+
+import logoLight from "@/assets/logo-light.svg";
+import logoDark from "@/assets/logo-dark.svg";
+
+import { cn } from "@/utils/cn";
+
+import PropTypes from "prop-types";
+
+export const Sidebar = forwardRef(({ collapsed }, ref) => {
     return (
         <aside
             ref={ref}
@@ -28,7 +28,7 @@ const Sidebar = forwardRef(({ collapsed }, ref) => {
                 />
                 <img
                     src={logoDark}
-                    alt="Logoipsum2"
+                    alt="Logoipsum"
                     className="hidden dark:block"
                 />
                 {!collapsed && <p className="text-lg font-medium text-slate-900 transition-colors dark:text-slate-50">Fauzan's Lab</p>}
@@ -37,7 +37,7 @@ const Sidebar = forwardRef(({ collapsed }, ref) => {
                 {navbarLinks.map((navbarLink) => (
                     <nav
                         key={navbarLink.title}
-                        className={cn("sidebar-group")}
+                        className={cn("sidebar-group", collapsed && "md:items-center")}
                     >
                         <p className={cn("sidebar-group-title", collapsed && "md:w-[45px]")}>{navbarLink.title}</p>
                         {navbarLink.links.map((link) => (
@@ -48,7 +48,7 @@ const Sidebar = forwardRef(({ collapsed }, ref) => {
                             >
                                 <link.icon
                                     size={22}
-                                    className="shrink-8 flex"
+                                    className="flex-shrink-0"
                                 />
                                 {!collapsed && <p className="whitespace-nowrap">{link.label}</p>}
                             </NavLink>
@@ -59,7 +59,9 @@ const Sidebar = forwardRef(({ collapsed }, ref) => {
         </aside>
     );
 });
+
 Sidebar.displayName = "Sidebar";
+
 Sidebar.propTypes = {
     collapsed: PropTypes.bool,
 };

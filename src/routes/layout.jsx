@@ -10,13 +10,14 @@ import { Outlet } from "react-router-dom";
 
 const Layout = () => {
     const isDesktopDevice = useMediaQuery("(min-width: 768px)");
-    const [collapsed, setCollapsed] = useState(!isDesktopDevice);
+    // const [collapsed, setCollapsed] = useState(!isDesktopDevice);
+    const [collapsed, setCollapsed] = useState(true);
 
     const sidebarRef = useRef(null);
 
-    useEffect(() => {
-        setCollapsed(!isDesktopDevice);
-    }, [isDesktopDevice]);
+    // useEffect(() => {
+    //     setCollapsed(!isDesktopDevice);
+    // }, [isDesktopDevice]);
 
     // useClickOutside([sidebarRef], () => {
     //     if (!isDesktopDevice && !collapsed) {
