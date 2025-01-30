@@ -65,7 +65,7 @@ const Header = ({ collapsed, setCollapsed }) => {
                             >
                                 <Popover.Panel className="absolute right-0 z-10 mt-2.5 w-80">
                                     <div className="rounded-sm bg-white px-2 py-2.5 shadow-md ring-1 ring-black ring-opacity-5">
-                                        <strong className="font-medium text-gray-700">Notifications</strong>
+                                        <strong className="text-base font-medium text-slate-900">Notifications</strong>
                                         <div className="mt-2 py-1">This is notification panel</div>
                                     </div>
                                 </Popover.Panel>
@@ -101,11 +101,12 @@ const Header = ({ collapsed, setCollapsed }) => {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                     >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-sm bg-white p-1 shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-sm bg-white p-1 shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-slate-900">
                             <Menu.Item>
                                 {({ active }) => (
                                     <div
-                                        className={cn(active && "bg-gray-100", "cursor-pointer rounded-sm px-4 py-2 text-gray-700 focus:bg-gray-200")}
+                                        // className={cn(active && "bg-gray-100", "cursor-pointer rounded-sm px-4 py-2 text-gray-700 focus:bg-gray-200")}
+                                        className={cn(active && "bg-gray-100", "cursor-pointer sidebar-item")}
                                         onClick={() => navigate("/profile")}
                                     >
                                         Your Profile
@@ -115,7 +116,8 @@ const Header = ({ collapsed, setCollapsed }) => {
                             <Menu.Item>
                                 {({ active }) => (
                                     <div
-                                        className={cn(active && "bg-gray-100", "cursor-pointer rounded-sm px-4 py-2 text-gray-700 focus:bg-gray-200")}
+                                        // className={cn(active && "bg-gray-100", "cursor-pointer rounded-sm px-4 py-2 text-gray-700 focus:bg-gray-200")}
+                                        className={cn(active && "bg-gray-100", "cursor-pointer sidebar-item")}
                                         onClick={() => navigate("/settings")}
                                     >
                                         Settings
@@ -125,10 +127,11 @@ const Header = ({ collapsed, setCollapsed }) => {
                             <Menu.Item>
                                 {({ active }) => (
                                     <div
-                                        className={cn(
-                                            active && "bg-gray-100",
-                                            "inline-flex w-full cursor-pointer rounded-sm px-4 py-2 text-gray-700 focus:bg-gray-200",
-                                        )}
+                                        // className={cn(
+                                        //     active && "bg-gray-100",
+                                        //     "inline-flex w-full cursor-pointer rounded-sm px-4 py-2 text-gray-700 focus:bg-gray-200",
+                                        // )}
+                                        className={cn(active && "bg-gray-100", "cursor-pointer sidebar-item")}
                                         onClick={() => navigate("/logout")}
                                     >
                                         <span>
