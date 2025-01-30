@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
 
-const Header = () => {
-  return (
-    <header>Header</header>
-  )
-}
+const Header = ({ collapsed, setCollapsed }) => {
+    return (
+        <header className="relative z-10 flex h-[60px] items-center justify-between bg-white px-4 shadow-md transition-colors dark:bg-slate-900">
+            Header
+        </header>
+    );
+};
 
-export default Header
+Header.propTypes = {
+    collapsed: PropTypes.bool,
+    setCollapsed: PropTypes.func,
+};
+
+export default Header;
