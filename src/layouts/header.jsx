@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { Bell, ChevronLast, ChevronLeft, ChevronsLeft, Moon, Search, Sun } from "lucide-react";
+import { Bell, ChevronLast, ChevronLeft, ChevronsLeft, DoorOpen, LogOut, Moon, Search, Sun } from "lucide-react";
 import { useTheme } from "../hooks/use-theme";
 import profilePicture from "../assets/profile-image2.jpg";
+import { Menu, Popover, Transition } from "@headlessui/react";
+import { cn } from "../utils/cn";
 
 const Header = ({ collapsed, setCollapsed }) => {
     const { theme, setTheme } = useTheme();
@@ -46,16 +48,99 @@ const Header = ({ collapsed, setCollapsed }) => {
                         className="hidden dark:block"
                     />
                 </button>
-                <button className="btn-ghost size-10">
+                <Popover className="relative">
+                    {({ open }) => (
+                        <>
+                            <Popover.Button className={cn(open && "bg-slate-100 dark:bg-blue-950", "btn-ghost")}>
+                                <Bell size={18} />
+                            </Popover.Button>
+                            <Transition
+                                as={Fragment}
+                                enter="transition duration-100 ease-out"
+                                enterFrom="transform scale-95 opacity-0"
+                                enterTo="transform scale-100 opacity-100"
+                                leave="transition duration-75 ease-out"
+                                leaveFrom="transform scale-100 opacity-100"
+                                leaveTo="transform scale-95 opacity-0"
+                            >
+                                <Popover.Panel className="absolute right-0 z-10 mt-2.5 w-80">
+                                    <div className="rounded-sm bg-white px-2 py-2.5 shadow-md ring-1 ring-black ring-opacity-5">
+                                        <strong className="font-medium text-gray-700">Notifications</strong>
+                                        <div className="mt-2 py-1">This is notification panel</div>
+                                    </div>
+                                </Popover.Panel>
+                            </Transition>
+                        </>
+                    )}
+                </Popover>
+                {/* <button className="btn-ghost size-10">
                     <Bell size={20} />
-                </button>
-                <button className="size-10 overflow-hidden rounded-full">
-                    <img
-                        src={profilePicture}
-                        alt="profilePicture"
-                        className="size-full object-cover"
-                    />
-                </button>
+                </button> */}
+                <Menu
+                    as="div"
+                    className="relative"
+                >
+                    <div>
+                        {" "}
+                        <Menu.Button>
+                            <div className="size-10 cursor-pointer overflow-hidden rounded-full">
+                                <img
+                                    src={profilePicture}
+                                    alt="profilePicture"
+                                    className="size-full object-cover"
+                                />
+                            </div>
+                        </Menu.Button>
+                    </div>
+                    <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                    >
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-sm bg-white p-1 shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <div
+                                        className={cn(active && "bg-gray-100", "cursor-pointer rounded-sm px-4 py-2 text-gray-700 focus:bg-gray-200")}
+                                        onClick={() => navigate("/profile")}
+                                    >
+                                        Your Profile
+                                    </div>
+                                )}
+                            </Menu.Item>
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <div
+                                        className={cn(active && "bg-gray-100", "cursor-pointer rounded-sm px-4 py-2 text-gray-700 focus:bg-gray-200")}
+                                        onClick={() => navigate("/settings")}
+                                    >
+                                        Settings
+                                    </div>
+                                )}
+                            </Menu.Item>
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <div
+                                        className={cn(
+                                            active && "bg-gray-100",
+                                            "inline-flex w-full cursor-pointer rounded-sm px-4 py-2 text-gray-700 focus:bg-gray-200",
+                                        )}
+                                        onClick={() => navigate("/logout")}
+                                    >
+                                        <span>
+                                            <LogOut className="pr-1" />
+                                        </span>
+                                        Logout
+                                    </div>
+                                )}
+                            </Menu.Item>
+                        </Menu.Items>
+                    </Transition>
+                </Menu>
             </div>
         </header>
     );
