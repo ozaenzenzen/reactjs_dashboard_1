@@ -1,11 +1,16 @@
 import { forwardRef } from "react";
 import { cn } from "../utils/cn";
 
+import { navbarLinks } from "../constants";
+
 import React from "react";
 import logoLight from "../assets/logo-light.svg";
 import logoDark from "../assets/logo-dark.svg";
 
-const Sidebar = forwardRef(({}, ref) => {
+import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
+
+const Sidebar = forwardRef(({ collapsed }, ref) => {
     return (
         <aside
             ref={ref}
@@ -24,10 +29,37 @@ const Sidebar = forwardRef(({}, ref) => {
                     alt="Logoipsum2"
                     className="hidden dark:block"
                 />
-            </div> 
+                {!collapsed && <p className="text-lg font-medium text-slate-900 transition-colors dark:text-slate-50">Fauzan's Lab</p>}
+            </div>
+            <div className="flex w-full flex-col gap-y-4 overflow-y-auto overflow-x-hidden p-3 [scrollbar-width:_thin]">
+                {navbarLinks.map((navbarLink) => (
+                    <nav
+                        key={navbarLink.title}
+                        className={cn("sidebar-group")}
+                    >
+                        <p className={cn("sidebar-group-title")}>{navbarLink.title}</p>
+                        {navbarLink.links.map((link) => (
+                            <NavLink
+                                key={link.label}
+                                to={link.path}
+                                className={cn("sidebar-item")}
+                            >
+                                <link.icon
+                                    size={22}
+                                    className="shrink-8 flex"
+                                />
+                                {!collapsed && <p className="whitespace-nowrap">{link.label}</p>}
+                            </NavLink>
+                        ))}
+                    </nav>
+                ))}
+            </div>
         </aside>
     );
 });
 Sidebar.displayName = "Sidebar";
+Sidebar.propTypes = {
+    collapsed: PropTypes.bool,
+};
 
 export default Sidebar;
